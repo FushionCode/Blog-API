@@ -1,0 +1,21 @@
+ version: '3'
+
+ services:
+   blog-api:
+     container_name: blog_api
+     build:
+       context: ./
+       dockerfile: Dockerfile
+     ports:
+       - "7000:7000"
+     depends_on:
+       - postgres
+
+   postgres:
+     image: postgres:13
+     environment:
+       - POSTGRES_USER=postgres
+       - POSTGRES_PASSWORD=password
+       - POSTGRES_DB=blogApi
+     ports:
+       - "5432"
